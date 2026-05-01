@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TaskFlow — Team Task Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<div id="app">
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-bg">
+      <div class="auth-grid"></div>
+    </div>
+    <div class="auth-container">
+      <div class="auth-brand">
+        <span class="brand-icon">◈</span>
+        <span class="brand-name">TaskFlow</span>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login">Sign In</button>
+          <button class="auth-tab" data-tab="signup">Sign Up</button>
+        </div>
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="login-email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required />
+          </div>
+          <div id="login-error" class="form-error hidden"></div>
+          <button type="submit" class="btn btn-primary btn-full">Sign In <span>→</span></button>
+          <p class="auth-hint">Try: <code>demo@taskflow.app</code> / <code>demo123</code></p>
+        </form>
+        <form id="signup-form" class="auth-form hidden">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="signup-name" placeholder="Alex Johnson" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="signup-email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="signup-password" placeholder="Min. 6 characters" required />
+          </div>
+          <div id="signup-error" class="form-error hidden"></div>
+          <button type="submit" class="btn btn-primary btn-full">Create Account <span>→</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="main-app" class="screen hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-header">
+        <span class="brand-icon">◈</span>
+        <span class="brand-name">TaskFlow</span>
+        <button id="sidebar-close" class="sidebar-close">✕</button>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="dashboard">
+          <span class="nav-icon">⬡</span> Dashboard
+        </a>
+        <a href="#" class="nav-item" data-view="projects">
+          <span class="nav-icon">◫</span> Projects
+        </a>
+        <div class="nav-section-label">PROJECTS</div>
+        <div id="project-nav-list"></div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-pill">
+          <div class="user-avatar" id="nav-avatar"></div>
+          <div class="user-info">
+            <div class="user-name" id="nav-name"></div>
+            <div class="user-email" id="nav-email"></div>
+          </div>
+        </div>
+        <button id="logout-btn" class="btn-ghost" title="Logout">⏻</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div id="main-content">
+      <header id="topbar">
+        <button id="menu-toggle" class="menu-toggle">☰</button>
+        <div class="topbar-title" id="page-title">Dashboard</div>
+        <div class="topbar-actions" id="topbar-actions"></div>
+      </header>
+
+      <!-- DASHBOARD VIEW -->
+      <div id="view-dashboard" class="view active">
+        <div class="view-content">
+          <div class="stats-grid" id="stats-grid"></div>
+          <div class="dashboard-grid">
+            <div class="dash-panel">
+              <div class="panel-header"><h3>Recent Activity</h3></div>
+              <div id="recent-tasks-list"></div>
+            </div>
+            <div class="dash-panel">
+              <div class="panel-header"><h3>Overdue Tasks</h3></div>
+              <div id="overdue-tasks-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS VIEW -->
+      <div id="view-projects" class="view hidden">
+        <div class="view-content">
+          <div class="projects-grid" id="projects-grid"></div>
+        </div>
+      </div>
+
+      <!-- PROJECT DETAIL VIEW -->
+      <div id="view-project-detail" class="view hidden">
+        <div class="view-content">
+          <div class="project-header-bar" id="project-header-bar"></div>
+          <div class="project-tabs">
+            <button class="ptab active" data-ptab="board">Board</button>
+            <button class="ptab" data-ptab="members">Members</button>
+          </div>
+          <div id="ptab-board" class="ptab-content">
+            <div class="board" id="task-board"></div>
+          </div>
+          <div id="ptab-members" class="ptab-content hidden">
+            <div id="members-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div id="modal-box" class="modal-box">
+    <div class="modal-header">
+      <h2 id="modal-title"></h2>
+      <button id="modal-close" class="modal-close">✕</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="/js/app.js"></script>
+</body>
+</html>
