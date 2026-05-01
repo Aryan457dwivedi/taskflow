@@ -2,7 +2,7 @@
 
 A full-stack team task manager with role-based access control, kanban board, and real-time dashboard.
 
-**Live Demo:** `https://your-app.railway.app`  
+**Live Demo:** `https://taskflowx.up.railway.app/`  
 **Demo Login:** `demo@taskflow.app` / `demo123`  
 **Member Login:** `sam@taskflow.app` / `member123`
 
