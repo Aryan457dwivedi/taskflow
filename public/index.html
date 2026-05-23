@@ -5,61 +5,207 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TaskFlow — Team Task Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 <div id="app">
-  <!-- AUTH SCREEN -->
+
+  <!-- ===== AUTH SCREEN ===== -->
   <div id="auth-screen" class="screen">
-    <div class="auth-bg">
-      <div class="auth-grid"></div>
-    </div>
-    <div class="auth-container">
-      <div class="auth-brand">
-        <span class="brand-icon">◈</span>
-        <span class="brand-name">TaskFlow</span>
-      </div>
-      <div class="auth-card">
-        <div class="auth-tabs">
-          <button class="auth-tab active" data-tab="login">Sign In</button>
-          <button class="auth-tab" data-tab="signup">Sign Up</button>
+    <!-- LEFT — illustration panel -->
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <!-- Inline SVG illustration: abstract kanban / task management -->
+        <div class="auth-illustration">
+          <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="gAmber" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f59e0b"/>
+                <stop offset="100%" stop-color="#fbbf24"/>
+              </linearGradient>
+              <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#818cf8"/>
+              </linearGradient>
+              <linearGradient id="gGreen" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#10b981"/>
+                <stop offset="100%" stop-color="#34d399"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Board columns background -->
+            <rect x="8" y="30" width="86" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
+            <rect x="106" y="30" width="86" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
+            <rect x="204" y="30" width="108" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
+
+            <!-- Column headers -->
+            <rect x="8" y="30" width="86" height="28" rx="8" fill="#141418"/>
+            <rect x="8" y="50" width="86" height="8" fill="#141418"/>
+            <circle cx="22" cy="44" r="4" fill="#7878a0"/>
+            <rect x="30" y="40" width="36" height="7" rx="3" fill="#2a2a38"/>
+            <circle cx="82" cy="44" r="8" fill="#1a1a20" stroke="#1e1e28" stroke-width="1"/>
+            <text x="82" y="48" text-anchor="middle" font-size="8" fill="#40404e" font-family="monospace">3</text>
+
+            <rect x="106" y="30" width="86" height="28" rx="8" fill="#141418"/>
+            <rect x="106" y="50" width="86" height="8" fill="#141418"/>
+            <circle cx="120" cy="44" r="4" fill="#6366f1" filter="url(#glow)"/>
+            <rect x="128" y="40" width="40" height="7" rx="3" fill="#2a2a38"/>
+            <circle cx="180" cy="44" r="8" fill="#1a1a20" stroke="#1e1e28" stroke-width="1"/>
+            <text x="180" y="48" text-anchor="middle" font-size="8" fill="#40404e" font-family="monospace">2</text>
+
+            <rect x="204" y="30" width="108" height="28" rx="8" fill="#141418"/>
+            <rect x="204" y="50" width="108" height="8" fill="#141418"/>
+            <circle cx="218" cy="44" r="4" fill="#10b981" filter="url(#glow)"/>
+            <rect x="226" y="40" width="40" height="7" rx="3" fill="#2a2a38"/>
+            <circle cx="300" cy="44" r="8" fill="#1a1a20" stroke="#1e1e28" stroke-width="1"/>
+            <text x="300" y="48" text-anchor="middle" font-size="8" fill="#40404e" font-family="monospace">4</text>
+
+            <!-- Todo cards -->
+            <rect x="16" y="66" width="70" height="52" rx="5" fill="#141418" stroke="#1e1e28" stroke-width="1"/>
+            <rect x="22" y="73" width="50" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="22" y="82" width="38" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="22" y="101" width="28" height="10" rx="5" fill="rgba(245,158,11,0.1)" stroke="rgba(245,158,11,0.2)" stroke-width="0.5"/>
+            <text x="36" y="109" text-anchor="middle" font-size="6" fill="#f59e0b" font-family="monospace">HIGH</text>
+
+            <rect x="16" y="126" width="70" height="52" rx="5" fill="#141418" stroke="#1e1e28" stroke-width="1"/>
+            <rect x="22" y="133" width="44" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="22" y="142" width="30" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="22" y="161" width="28" height="10" rx="5" fill="rgba(34,211,238,0.1)" stroke="rgba(34,211,238,0.2)" stroke-width="0.5"/>
+            <text x="36" y="169" text-anchor="middle" font-size="6" fill="#22d3ee" font-family="monospace">MED</text>
+
+            <!-- In Progress cards — highlighted -->
+            <rect x="114" y="66" width="70" height="56" rx="5" fill="#141418" stroke="#6366f1" stroke-width="1"/>
+            <rect x="114" y="66" width="70" height="3" rx="2" fill="url(#gBlue)"/>
+            <rect x="120" y="76" width="48" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="120" y="85" width="36" height="4" rx="2" fill="#1e1e28"/>
+            <circle cx="130" cy="108" r="8" fill="#6366f1"/>
+            <text x="130" y="111" text-anchor="middle" font-size="6" fill="#fff" font-family="monospace" font-weight="bold">AR</text>
+            <rect x="144" y="103" width="32" height="10" rx="5" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.3)" stroke-width="0.5"/>
+            <text x="160" y="111" text-anchor="middle" font-size="6" fill="#6366f1" font-family="monospace">May 28</text>
+
+            <rect x="114" y="130" width="70" height="50" rx="5" fill="#141418" stroke="#1e1e28" stroke-width="1"/>
+            <rect x="120" y="137" width="42" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="120" y="146" width="28" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="120" y="163" width="28" height="10" rx="5" fill="rgba(251,146,60,0.1)" stroke="rgba(251,146,60,0.2)" stroke-width="0.5"/>
+            <text x="134" y="171" text-anchor="middle" font-size="6" fill="#fb923c" font-family="monospace">HIGH</text>
+
+            <!-- Done cards — green accent -->
+            <rect x="212" y="66" width="92" height="50" rx="5" fill="#141418" stroke="#10b981" stroke-width="1"/>
+            <rect x="212" y="66" width="92" height="3" rx="2" fill="url(#gGreen)"/>
+            <rect x="218" y="76" width="56" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="218" y="85" width="40" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="218" y="99" width="40" height="10" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="0.5"/>
+            <text x="238" y="107" text-anchor="middle" font-size="6" fill="#10b981" font-family="monospace">DONE</text>
+
+            <rect x="212" y="124" width="92" height="50" rx="5" fill="#141418" stroke="#10b981" stroke-width="1"/>
+            <rect x="212" y="124" width="92" height="3" rx="2" fill="url(#gGreen)"/>
+            <rect x="218" y="134" width="48" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="218" y="143" width="34" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="218" y="157" width="40" height="10" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="0.5"/>
+            <text x="238" y="165" text-anchor="middle" font-size="6" fill="#10b981" font-family="monospace">DONE</text>
+
+            <rect x="212" y="182" width="92" height="50" rx="5" fill="#141418" stroke="#10b981" stroke-width="1"/>
+            <rect x="212" y="182" width="92" height="3" rx="2" fill="url(#gGreen)"/>
+            <rect x="218" y="192" width="52" height="5" rx="2" fill="#2a2a38"/>
+            <rect x="218" y="201" width="30" height="4" rx="2" fill="#1e1e28"/>
+            <rect x="218" y="215" width="40" height="10" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="0.5"/>
+            <text x="238" y="223" text-anchor="middle" font-size="6" fill="#10b981" font-family="monospace">DONE</text>
+
+            <!-- Floating stat chips -->
+            <rect x="60" y="4" width="72" height="20" rx="10" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
+            <circle cx="73" cy="14" r="4" fill="#f59e0b"/>
+            <rect x="81" y="10" width="44" height="8" rx="3" fill="#1a1a20"/>
+
+            <rect x="170" y="4" width="80" height="20" rx="10" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
+            <circle cx="183" cy="14" r="4" fill="#10b981"/>
+            <rect x="191" y="10" width="50" height="8" rx="3" fill="#1a1a20"/>
+
+            <!-- Animated pulse dot -->
+            <circle cx="51" cy="14" r="5" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1">
+              <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="51" cy="14" r="3" fill="#f59e0b"/>
+          </svg>
         </div>
-        <form id="login-form" class="auth-form">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="login-email" placeholder="you@company.com" required />
+
+        <div class="auth-left-title">Ship tasks,<br/>not excuses.</div>
+        <p class="auth-left-sub">A real-time team task manager built with Node.js + vanilla JS — no framework required.</p>
+
+        <div class="auth-feature-list">
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Kanban board with 4-column workflow</div>
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Role-based access — admin &amp; member</div>
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Real-time overdue &amp; priority tracking</div>
+          <div class="auth-feature"><div class="auth-feature-dot"></div>Multi-project, multi-team support</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — form panel -->
+    <div class="auth-right">
+      <div class="auth-container">
+        <div class="auth-brand">
+          <span class="brand-icon">◈</span>
+          <span class="brand-name">TaskFlow</span>
+        </div>
+
+        <div class="auth-welcome">
+          <h2 id="auth-welcome-title">Welcome back</h2>
+          <p id="auth-welcome-sub">Sign in to your workspace</p>
+        </div>
+
+        <div class="auth-card">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Sign In</button>
+            <button class="auth-tab" data-tab="signup">Sign Up</button>
           </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="login-password" placeholder="••••••••" required />
-          </div>
-          <div id="login-error" class="form-error hidden"></div>
-          <button type="submit" class="btn btn-primary btn-full">Sign In <span>→</span></button>
-          <p class="auth-hint">Try: <code>demo@taskflow.app</code> / <code>demo123</code></p>
-        </form>
-        <form id="signup-form" class="auth-form hidden">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="signup-name" placeholder="Alex Johnson" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="signup-email" placeholder="you@company.com" required />
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="signup-password" placeholder="Min. 6 characters" required />
-          </div>
-          <div id="signup-error" class="form-error hidden"></div>
-          <button type="submit" class="btn btn-primary btn-full">Create Account <span>→</span></button>
-        </form>
+
+          <!-- Login Form -->
+          <form id="login-form" class="auth-form">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="login-email" placeholder="you@company.com" required />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="••••••••" required />
+            </div>
+            <div id="login-error" class="form-error hidden"></div>
+            <button type="submit" class="btn btn-primary btn-full">Sign In <span>→</span></button>
+            <p class="auth-hint">Try: <code>demo@taskflow.app</code> / <code>demo123</code></p>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="signup-form" class="auth-form hidden">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="signup-name" placeholder="Alex Johnson" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="signup-email" placeholder="you@company.com" required />
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="signup-password" placeholder="Min. 6 characters" required />
+            </div>
+            <div id="signup-error" class="form-error hidden"></div>
+            <button type="submit" class="btn btn-primary btn-full">Create Account <span>→</span></button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN APP -->
+  <!-- ===== MAIN APP ===== -->
   <div id="main-app" class="screen hidden">
+
     <!-- Sidebar -->
     <aside id="sidebar">
       <div class="sidebar-header">
@@ -74,7 +220,7 @@
         <a href="#" class="nav-item" data-view="projects">
           <span class="nav-icon">◫</span> Projects
         </a>
-        <div class="nav-section-label">PROJECTS</div>
+        <div class="nav-section-label">Projects</div>
         <div id="project-nav-list"></div>
       </nav>
       <div class="sidebar-footer">
@@ -85,11 +231,11 @@
             <div class="user-email" id="nav-email"></div>
           </div>
         </div>
-        <button id="logout-btn" class="btn-ghost" title="Logout">⏻</button>
+        <button id="logout-btn" class="btn-ghost" title="Sign out">⏻</button>
       </div>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <div id="main-content">
       <header id="topbar">
         <button id="menu-toggle" class="menu-toggle">☰</button>
@@ -103,11 +249,15 @@
           <div class="stats-grid" id="stats-grid"></div>
           <div class="dashboard-grid">
             <div class="dash-panel">
-              <div class="panel-header"><h3>Recent Activity</h3></div>
+              <div class="panel-header">
+                <h3>Recent Activity</h3>
+              </div>
               <div id="recent-tasks-list"></div>
             </div>
             <div class="dash-panel">
-              <div class="panel-header"><h3>Overdue Tasks</h3></div>
+              <div class="panel-header">
+                <h3>Overdue Tasks</h3>
+              </div>
               <div id="overdue-tasks-list"></div>
             </div>
           </div>
@@ -137,11 +287,12 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- MODALS -->
+    </div><!-- /main-content -->
+  </div><!-- /main-app -->
+</div><!-- /app -->
+
+<!-- Modal -->
 <div id="modal-overlay" class="modal-overlay hidden">
   <div id="modal-box" class="modal-box">
     <div class="modal-header">
@@ -154,6 +305,16 @@
 
 <div id="toast-container"></div>
 
+<script>
+  // Update welcome heading when switching auth tabs
+  document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const isLogin = tab.dataset.tab === 'login';
+      document.getElementById('auth-welcome-title').textContent = isLogin ? 'Welcome back' : 'Create account';
+      document.getElementById('auth-welcome-sub').textContent = isLogin ? 'Sign in to your workspace' : 'Join your team on TaskFlow';
+    });
+  });
+</script>
 <script src="/js/app.js"></script>
 </body>
 </html>
