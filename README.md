@@ -8,7 +8,7 @@ A full-stack team task manager with role-based access control, kanban board, and
 
 ---
 
-https://drive.google.com/file/d/1TgjnHEVeqtEcQ4hzBNALw01KcLJixqGY/view?usp=drive_link
+https://drive.google.com/file/d/1WI82BvU3EthfHsVaJeylSkLdcQC-kl08/view?usp=drive_link
 
 ## Features
 
