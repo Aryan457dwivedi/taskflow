@@ -17,7 +17,6 @@
     <!-- LEFT — illustration panel -->
     <div class="auth-left">
       <div class="auth-left-content">
-        <!-- Inline SVG illustration: abstract kanban / task management -->
         <div class="auth-illustration">
           <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
             <defs>
@@ -35,6 +34,10 @@
               </linearGradient>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="softglow">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
               </filter>
             </defs>
@@ -117,16 +120,14 @@
             <rect x="218" y="215" width="40" height="10" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="0.5"/>
             <text x="238" y="223" text-anchor="middle" font-size="6" fill="#10b981" font-family="monospace">DONE</text>
 
-            <!-- Floating stat chips -->
+            <!-- Floating stat chips — static, no pulse -->
             <rect x="60" y="4" width="72" height="20" rx="10" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
-            <circle cx="73" cy="14" r="4" fill="#f59e0b"/>
+            <circle cx="73" cy="14" r="4" fill="#f59e0b" filter="url(#glow)"/>
             <rect x="81" y="10" width="44" height="8" rx="3" fill="#1a1a20"/>
 
             <rect x="170" y="4" width="80" height="20" rx="10" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
-            <circle cx="183" cy="14" r="4" fill="#10b981"/>
+            <circle cx="183" cy="14" r="4" fill="#10b981" filter="url(#glow)"/>
             <rect x="191" y="10" width="50" height="8" rx="3" fill="#1a1a20"/>
-
-            
           </svg>
         </div>
 
@@ -134,10 +135,22 @@
         <p class="auth-left-sub">A real-time team task manager built with Node.js + vanilla JS — no framework required.</p>
 
         <div class="auth-feature-list">
-            <div class="auth-feature">Kanban board with 4-column workflow</div>
-            <div class="auth-feature">Role-based access — admin &amp; member</div>
-            <div class="auth-feature">Real-time overdue &amp; priority tracking</div>
-            <div class="auth-feature">Multi-project, multi-team support</div>
+          <div class="auth-feature">
+            <span class="auth-feature-icon">⬡</span>
+            Kanban board with 4-column workflow
+          </div>
+          <div class="auth-feature">
+            <span class="auth-feature-icon">◎</span>
+            Role-based access — admin &amp; member
+          </div>
+          <div class="auth-feature">
+            <span class="auth-feature-icon">◈</span>
+            Real-time overdue &amp; priority tracking
+          </div>
+          <div class="auth-feature">
+            <span class="auth-feature-icon">⬙</span>
+            Multi-project, multi-team support
+          </div>
         </div>
       </div>
     </div>
@@ -146,7 +159,6 @@
     <div class="auth-right">
       <div class="auth-container">
         <div class="auth-brand">
-          
           <span class="brand-name">TaskFlow</span>
         </div>
 
@@ -301,7 +313,6 @@
 <div id="toast-container"></div>
 
 <script>
-  // Update welcome heading when switching auth tabs
   document.querySelectorAll('.auth-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const isLogin = tab.dataset.tab === 'login';
