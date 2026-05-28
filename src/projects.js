@@ -2,14 +2,14 @@ const router = require('express').Router();
 const { find, findOne, insert, update, remove } = require('./database');
 const { auth, projectAdmin } = require('./middleware');
 
-// GET /api/projects — list projects the current user is a member of
+
 router.get('/', auth, async (req, res) => {
   try {
     const memberships = await find('members', { userId: req.user._id });
     const projectIds = memberships.map(m => m.projectId);
     const projects = await find('projects', { _id: { $in: projectIds } });
 
-    // Enrich with member count, task count, user role
+   
     const enriched = await Promise.all(projects.map(async p => {
       const members = await find('members', { projectId: p._id });
       const tasks = await find('tasks', { projectId: p._id });
@@ -26,7 +26,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
-// POST /api/projects — create project (creator becomes admin)
+
 router.post('/', auth, async (req, res) => {
   try {
     const { name, description, color } = req.body;
@@ -55,7 +55,7 @@ router.post('/', auth, async (req, res) => {
   }
 });
 
-// GET /api/projects/:projectId
+
 router.get('/:projectId', auth, async (req, res) => {
   try {
     const { projectId } = req.params;
@@ -74,7 +74,7 @@ router.get('/:projectId', auth, async (req, res) => {
   }
 });
 
-// PUT /api/projects/:projectId — update project (admin only)
+
 router.put('/:projectId', auth, projectAdmin, async (req, res) => {
   try {
     const { name, description, color } = req.body;
@@ -92,7 +92,7 @@ router.put('/:projectId', auth, projectAdmin, async (req, res) => {
   }
 });
 
-// DELETE /api/projects/:projectId (admin only)
+
 router.delete('/:projectId', auth, projectAdmin, async (req, res) => {
   try {
     const { projectId } = req.params;
@@ -105,7 +105,7 @@ router.delete('/:projectId', auth, projectAdmin, async (req, res) => {
   }
 });
 
-// POST /api/projects/:projectId/members — invite member (admin only)
+
 router.post('/:projectId/members', auth, projectAdmin, async (req, res) => {
   try {
     const { email, role } = req.body;
@@ -132,7 +132,7 @@ router.post('/:projectId/members', auth, projectAdmin, async (req, res) => {
   }
 });
 
-// PUT /api/projects/:projectId/members/:memberId — change role (admin only)
+
 router.put('/:projectId/members/:memberId', auth, projectAdmin, async (req, res) => {
   try {
     const { role } = req.body;
@@ -147,11 +147,11 @@ router.put('/:projectId/members/:memberId', auth, projectAdmin, async (req, res)
   }
 });
 
-// DELETE /api/projects/:projectId/members/:memberId (admin only)
+
 router.delete('/:projectId/members/:memberId', auth, projectAdmin, async (req, res) => {
   try {
     await remove('members', { _id: req.params.memberId, projectId: req.params.projectId });
-    // Unassign tasks
+   
     await update('tasks', { projectId: req.params.projectId, assigneeId: req.params.memberId },
       { $set: { assigneeId: null, assigneeName: null } }, { multi: true });
     res.json({ message: 'Member removed' });
