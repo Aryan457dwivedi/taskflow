@@ -12,9 +12,9 @@
 <body>
 <div id="app">
 
-  <!-- ===== AUTH SCREEN ===== -->
+ 
   <div id="auth-screen" class="screen">
-    <!-- LEFT — illustration panel -->
+   
     <div class="auth-left">
       <div class="auth-left-content">
         <div class="auth-illustration">
@@ -42,12 +42,12 @@
               </filter>
             </defs>
 
-            <!-- Board columns background -->
+            
             <rect x="8" y="30" width="86" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
             <rect x="106" y="30" width="86" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
             <rect x="204" y="30" width="108" height="210" rx="8" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
 
-            <!-- Column headers -->
+           
             <rect x="8" y="30" width="86" height="28" rx="8" fill="#141418"/>
             <rect x="8" y="50" width="86" height="8" fill="#141418"/>
             <circle cx="22" cy="44" r="4" fill="#7878a0"/>
@@ -69,7 +69,7 @@
             <circle cx="300" cy="44" r="8" fill="#1a1a20" stroke="#1e1e28" stroke-width="1"/>
             <text x="300" y="48" text-anchor="middle" font-size="8" fill="#40404e" font-family="monospace">4</text>
 
-            <!-- Todo cards -->
+            
             <rect x="16" y="66" width="70" height="52" rx="5" fill="#141418" stroke="#1e1e28" stroke-width="1"/>
             <rect x="22" y="73" width="50" height="5" rx="2" fill="#2a2a38"/>
             <rect x="22" y="82" width="38" height="4" rx="2" fill="#1e1e28"/>
@@ -82,7 +82,7 @@
             <rect x="22" y="161" width="28" height="10" rx="5" fill="rgba(34,211,238,0.1)" stroke="rgba(34,211,238,0.2)" stroke-width="0.5"/>
             <text x="36" y="169" text-anchor="middle" font-size="6" fill="#22d3ee" font-family="monospace">MED</text>
 
-            <!-- In Progress cards — highlighted -->
+           
             <rect x="114" y="66" width="70" height="56" rx="5" fill="#141418" stroke="#6366f1" stroke-width="1"/>
             <rect x="114" y="66" width="70" height="3" rx="2" fill="url(#gBlue)"/>
             <rect x="120" y="76" width="48" height="5" rx="2" fill="#2a2a38"/>
@@ -98,7 +98,7 @@
             <rect x="120" y="163" width="28" height="10" rx="5" fill="rgba(251,146,60,0.1)" stroke="rgba(251,146,60,0.2)" stroke-width="0.5"/>
             <text x="134" y="171" text-anchor="middle" font-size="6" fill="#fb923c" font-family="monospace">HIGH</text>
 
-            <!-- Done cards — green accent -->
+           
             <rect x="212" y="66" width="92" height="50" rx="5" fill="#141418" stroke="#10b981" stroke-width="1"/>
             <rect x="212" y="66" width="92" height="3" rx="2" fill="url(#gGreen)"/>
             <rect x="218" y="76" width="56" height="5" rx="2" fill="#2a2a38"/>
@@ -120,7 +120,7 @@
             <rect x="218" y="215" width="40" height="10" rx="5" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="0.5"/>
             <text x="238" y="223" text-anchor="middle" font-size="6" fill="#10b981" font-family="monospace">DONE</text>
 
-            <!-- Floating stat chips — static, no pulse -->
+           
             <rect x="60" y="4" width="72" height="20" rx="10" fill="#0e0e12" stroke="#1e1e28" stroke-width="1"/>
             <circle cx="73" cy="14" r="4" fill="#f59e0b" filter="url(#glow)"/>
             <rect x="81" y="10" width="44" height="8" rx="3" fill="#1a1a20"/>
@@ -155,7 +155,7 @@
       </div>
     </div>
 
-    <!-- RIGHT — form panel -->
+    
     <div class="auth-right">
       <div class="auth-container">
         <div class="auth-brand">
@@ -173,7 +173,7 @@
             <button class="auth-tab" data-tab="signup">Sign Up</button>
           </div>
 
-          <!-- Login Form -->
+        
           <form id="login-form" class="auth-form">
             <div class="form-group">
               <label>Email</label>
@@ -188,7 +188,7 @@
             <p class="auth-hint">Try: <code>demo@taskflow.app</code> / <code>demo123</code></p>
           </form>
 
-          <!-- Signup Form -->
+         
           <form id="signup-form" class="auth-form hidden">
             <div class="form-group">
               <label>Full Name</label>
@@ -210,10 +210,10 @@
     </div>
   </div>
 
-  <!-- ===== MAIN APP ===== -->
+
   <div id="main-app" class="screen hidden">
 
-    <!-- Sidebar -->
+   
     <aside id="sidebar">
       <div class="sidebar-header">
         <span class="brand-icon">◈</span>
@@ -242,7 +242,7 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
+  
     <div id="main-content">
       <header id="topbar">
         <button id="menu-toggle" class="menu-toggle">☰</button>
@@ -250,7 +250,7 @@
         <div class="topbar-actions" id="topbar-actions"></div>
       </header>
 
-      <!-- DASHBOARD VIEW -->
+    
       <div id="view-dashboard" class="view active">
         <div class="view-content">
           <div class="stats-grid" id="stats-grid"></div>
@@ -271,14 +271,14 @@
         </div>
       </div>
 
-      <!-- PROJECTS VIEW -->
+     
       <div id="view-projects" class="view hidden">
         <div class="view-content">
           <div class="projects-grid" id="projects-grid"></div>
         </div>
       </div>
 
-      <!-- PROJECT DETAIL VIEW -->
+      
       <div id="view-project-detail" class="view hidden">
         <div class="view-content">
           <div class="project-header-bar" id="project-header-bar"></div>
@@ -295,11 +295,11 @@
         </div>
       </div>
 
-    </div><!-- /main-content -->
-  </div><!-- /main-app -->
-</div><!-- /app -->
+    </div>
+  </div>
+</div>
 
-<!-- Modal -->
+
 <div id="modal-overlay" class="modal-overlay hidden">
   <div id="modal-box" class="modal-box">
     <div class="modal-header">
