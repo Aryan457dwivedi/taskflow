@@ -187,17 +187,6 @@ body::before {
   color: var(--text);
 }
 
-.auth-feature-icon {
-  font-size: 13px;
-  color: var(--amber);
-  opacity: 0.8;
-  flex-shrink: 0;
-  width: 18px;
-  text-align: center;
-  line-height: 1;
-}
-
-
 .auth-right {
   width: 460px;
   flex-shrink: 0;
