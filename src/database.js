@@ -3,7 +3,7 @@ const path = require('path');
 
 const dbPath = process.env.DB_PATH || path.join(__dirname, '../data');
 
-// Create data directory
+
 const fs = require('fs');
 if (!fs.existsSync(dbPath)) fs.mkdirSync(dbPath, { recursive: true });
 
@@ -14,7 +14,7 @@ const db = {
   members: new Datastore({ filename: path.join(dbPath, 'members.db'), autoload: true }),
 };
 
-// Promisify helpers
+
 const find = (col, query) => new Promise((res, rej) =>
   db[col].find(query, (e, d) => e ? rej(e) : res(d)));
 
@@ -30,7 +30,7 @@ const update = (col, query, upd, opts = {}) => new Promise((res, rej) =>
 const remove = (col, query, opts = {}) => new Promise((res, rej) =>
   db[col].remove(query, opts, (e, n) => e ? rej(e) : res(n)));
 
-// Create indexes
+
 db.users.ensureIndex({ fieldName: 'email', unique: true });
 db.members.ensureIndex({ fieldName: 'projectId' });
 db.tasks.ensureIndex({ fieldName: 'projectId' });
