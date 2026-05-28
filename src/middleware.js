@@ -17,7 +17,7 @@ const auth = async (req, res, next) => {
   }
 };
 
-// Check if user is admin of a project
+
 const projectAdmin = async (req, res, next) => {
   const { find } = require('./database');
   const projectId = req.params.projectId || req.body.projectId;
