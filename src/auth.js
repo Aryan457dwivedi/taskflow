@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const { findOne, insert } = require('./database');
 const { generateToken } = require('./middleware');
 
-// POST /api/auth/signup
+
 router.post('/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// POST /api/auth/login
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// GET /api/auth/me
+
 router.get('/me', require('./middleware').auth, (req, res) => {
   const { password: _, ...safeUser } = req.user;
   res.json({ user: safeUser });
