@@ -6,7 +6,6 @@ A full-stack team task manager with role-based access control, kanban board, and
 **Demo Login:** `demo@taskflow.app` / `demo123`  
 **Member Login:** `sam@taskflow.app` / `member123`
 
----
 # DEMO VIDEO
 
 https://drive.google.com/file/d/1WI82BvU3EthfHsVaJeylSkLdcQC-kl08/view?usp=drive_link
