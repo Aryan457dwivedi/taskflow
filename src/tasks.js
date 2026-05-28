@@ -2,7 +2,7 @@ const router = require('express').Router({ mergeParams: true });
 const { find, findOne, insert, update, remove } = require('./database');
 const { auth } = require('./middleware');
 
-// Middleware: verify project membership
+
 const isMember = async (req, res, next) => {
   const projectId = req.params.projectId;
   const membership = await findOne('members', { projectId, userId: req.user._id });
@@ -14,7 +14,7 @@ const isMember = async (req, res, next) => {
 const STATUSES = ['todo', 'in-progress', 'review', 'done'];
 const PRIORITIES = ['low', 'medium', 'high', 'critical'];
 
-// GET /api/projects/:projectId/tasks
+
 router.get('/', auth, isMember, async (req, res) => {
   try {
     const { status, priority, assigneeId } = req.query;
@@ -31,7 +31,7 @@ router.get('/', auth, isMember, async (req, res) => {
   }
 });
 
-// POST /api/projects/:projectId/tasks (admin only)
+
 router.post('/', auth, isMember, async (req, res) => {
   try {
     if (req.membership.role !== 'admin')
@@ -69,7 +69,7 @@ router.post('/', auth, isMember, async (req, res) => {
   }
 });
 
-// PUT /api/projects/:projectId/tasks/:taskId
+
 router.put('/:taskId', auth, isMember, async (req, res) => {
   try {
     const task = await findOne('tasks', { _id: req.params.taskId, projectId: req.params.projectId });
@@ -83,7 +83,7 @@ router.put('/:taskId', auth, isMember, async (req, res) => {
 
     const allowed = isAdmin
       ? ['title', 'description', 'assigneeId', 'priority', 'dueDate', 'tags', 'status']
-      : ['status']; // members can only update status of their own tasks
+      : ['status']; 
 
     const updates = {};
     for (const key of allowed) {
@@ -108,7 +108,7 @@ router.put('/:taskId', auth, isMember, async (req, res) => {
   }
 });
 
-// DELETE /api/projects/:projectId/tasks/:taskId (admin only)
+
 router.delete('/:taskId', auth, isMember, async (req, res) => {
   try {
     if (req.membership.role !== 'admin')
@@ -122,9 +122,9 @@ router.delete('/:taskId', auth, isMember, async (req, res) => {
   }
 });
 
-// GET /api/dashboard — summary across all user's projects
+
 router.get('/dashboard', auth, async (req, res) => {
-  // This is handled in server.js directly
+ 
 });
 
 module.exports = router;
