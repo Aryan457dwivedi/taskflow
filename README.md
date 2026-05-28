@@ -180,14 +180,11 @@ taskflow/
 ---
 
 ## Screenshots
+<img width="2879" height="1559" alt="Screenshot 2026-05-28 151701" src="https://github.com/user-attachments/assets/cc99a383-339e-4765-b2d2-959b6f05a7fa" />
+
 
 > Dashboard with stats cards, recent activity, and overdue tasks  
 > Kanban board with drag-and-drop columns  
 > Project detail with member management  
 > Role-based task creation modal  
 
----
-
-## License
-
-MIT
