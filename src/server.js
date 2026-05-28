@@ -12,12 +12,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-// API Routes
+
 app.use('/api/auth', require('./auth'));
 app.use('/api/projects', require('./projects'));
 app.use('/api/projects/:projectId/tasks', require('./tasks'));
 
-// Dashboard endpoint
+
 app.get('/api/dashboard', auth, async (req, res) => {
   try {
     const memberships = await find('members', { userId: req.user._id });
@@ -70,11 +70,11 @@ app.get('/api/dashboard', auth, async (req, res) => {
   }
 });
 
-// Serve SPA for all other routes
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 TaskFlow running on port ${PORT}`);
+  console.log(` TaskFlow running on port ${PORT}`);
 });
